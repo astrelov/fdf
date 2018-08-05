@@ -101,7 +101,7 @@ set(LIBFT
 set(FDF
         src/main.c
         includes/fdf.h
-        )
+        src/render.c src/parse_map.c)
 
 add_executable(fdf
         ${LIBFT}

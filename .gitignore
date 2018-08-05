@@ -6,3 +6,9 @@
 cmake-build-debug/
 
 fdf
+
+*.a
+
+libft/obj/
+
+obj/

@@ -6,7 +6,7 @@
 #    By: astrielov <astrielov@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/29 21:14:14 by astrielov         #+#    #+#              #
-#    Updated: 2018/07/20 15:15:20 by astrelov         ###   ########.fr        #
+#    Updated: 2018/08/05 16:43:10 by null             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,12 +109,15 @@ OBJS = $(patsubst %.c, $(OBJDIR)%.o, $(SRCS))
 
 OBJDIR = obj/
 
+HEADER = ./libft.h ./ft_printf/includes/ft_printf.h
+
 HEADERS = -I ./ -I ./ft_printf/includes
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@ar rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
 	@printf "\n\033[0;32mlibft.a: DONE\033[0m\n"
 
 $(OBJS): | objdir
@@ -126,7 +129,7 @@ objdir:
 	@mkdir -p $(OBJDIR)/ft_printf/src/handle/integer
 	@mkdir -p $(OBJDIR)/ft_printf/src/helpers
 
-$(OBJDIR)%.o: %.c
+$(OBJDIR)%.o: %.c $(HEADER)
 	@gcc $(CFLAGS) $(HEADERS) -c $< -o $@
 	@printf "."
 
