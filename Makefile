@@ -6,7 +6,7 @@
 #    By: astrelov <astrelov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/01 16:22:59 by astrelov          #+#    #+#              #
-#    Updated: 2018/08/07 12:14:14 by astrelov         ###   ########.fr        #
+#    Updated: 2018/08/07 16:03:16 by astrelov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ NAME =          	fdf
 
 SRC =           	src/main.c \
 					src/render.c \
-					src/parse_map.c
+					src/parse_map.c \
+					src/handle_events.c
 
 OBJS =         		$(patsubst src/%.c, $(OBJDIR)%.o, $(SRC))
 

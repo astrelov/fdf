@@ -26,4 +26,5 @@ void	parse_map(char *file, t_fdf *fdf)
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
+	close(fd);
 }
