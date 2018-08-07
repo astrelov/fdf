@@ -6,7 +6,7 @@
 #    By: astrelov <astrelov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/01 16:22:59 by astrelov          #+#    #+#              #
-#    Updated: 2018/08/05 21:57:35 by null             ###   ########.fr        #
+#    Updated: 2018/08/07 16:03:16 by astrelov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ NAME =          	fdf
 
 SRC =           	src/main.c \
 					src/render.c \
-					src/parse_map.c
+					src/parse_map.c \
+					src/handle_events.c
 
 OBJS =         		$(patsubst src/%.c, $(OBJDIR)%.o, $(SRC))
 
@@ -55,38 +56,36 @@ MLXFLAG_MAC =		-lmlx -framework OpenGL -framework AppKit
 
 MLXFLAG_LINUX =		-lmlx -lXext -lX11
 
-ISMACOS :=			$([[ $OSTYPE == darwin* ]])
-
 all:				objdir
-					make --directory=./libft
-					make $(NAME)
+					@make --directory=./libft
+					@make $(NAME)
 
 $(NAME):        	$(OBJS)
-ifdef ISMACOS
-	printf "\n$(BYellow)Compiling with MAC OS flags$(Color_Off)"
-	gcc -o $(NAME) $(OBJS) $(LIBFTFLAG) $(MLXFLAG_MAC)
+ifeq ($(OSTYPE), linux-gnu)
+	@printf "\n$(BCyan)Linking with UNIX flags$(Color_Off)"
+	@gcc -o $(NAME) $(OBJS) $(LIBFTFLAG) $(MLXFLAG_LINUX)
 else
-	printf "\n$(BYellow)Compiling with UNIX flags$(Color_Off)"
-	gcc -o $(NAME) $(OBJS) $(LIBFTFLAG) $(MLXFLAG_LINUX)
+	@printf "\n$(BCyan)Linking with MAC OS flags$(Color_Off)"
+	@gcc -o $(NAME) $(OBJS) $(LIBFTFLAG) $(MLXFLAG_MAC)
 endif
 					@printf "\n\033[0;32mfdf: DONE\033[0m\n"
 
 $(OBJDIR)%.o:		src/%.c $(HEADER)
-					gcc $(CFLAGS) $(LIBFTFLAG) $(HEADERS) -c $< -o $@
+					@gcc $(CFLAGS) $(HEADERS) -c $< -o $@
 					@printf "."
 
 objdir:
-					mkdir -p $(OBJDIR)
+					@mkdir -p $(OBJDIR)
 
 clean:
-					make --directory=./libft clean
-					rm -rf $(OBJDIR)
+					@make --directory=./libft clean
+					@rm -rf $(OBJDIR)
 					@printf "\033[0;32mfdf objects: removed\033[0m\n"
 
 fclean:
-					make --directory=./libft fclean
-					rm -rf $(OBJDIR)
-					rm -f $(NAME)
+					@make --directory=./libft fclean
+					@rm -rf $(OBJDIR)
+					@rm -f $(NAME)
 					@printf "\033[0;32mfdf objects: removed\033[0m\n"
 					@printf "\033[0;32mfdf: removed\033[0m\n"
 
