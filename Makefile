@@ -63,10 +63,10 @@ all:				objdir
 
 $(NAME):        	$(OBJS)
 ifdef ISMACOS
-	printf "\n$(BYellow)MAC OS detected$(Color_Off)"
+	printf "\n$(BYellow)Compiling with MAC OS flags$(Color_Off)"
 	gcc -o $(NAME) $(OBJS) $(LIBFTFLAG) $(MLXFLAG_MAC)
 else
-	printf "\n$(BYellow)Linux detected$(Color_Off)"
+	printf "\n$(BYellow)Compiling with UNIX flags$(Color_Off)"
 	gcc -o $(NAME) $(OBJS) $(LIBFTFLAG) $(MLXFLAG_LINUX)
 endif
 					@printf "\n\033[0;32mfdf: DONE\033[0m\n"
