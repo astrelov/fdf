@@ -6,7 +6,7 @@
 /*   By: astrelov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 16:43:56 by astrelov          #+#    #+#             */
-/*   Updated: 2017/11/05 16:43:57 by astrelov         ###   ########.fr       */
+/*   Updated: 2018/08/08 13:49:14 by astrelov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ double			ft_d_sqrt(double x)
 	g = 1;
 	if (x < 0)
 	{
-		ft_errmsg("ft_d_sqrt: negative input to function.\n");
+		ft_err_exit("ft_d_sqrt: negative input to function.\n");
 		return (-1);
 	}
 	return (ft_d_sqrt2(x, g));

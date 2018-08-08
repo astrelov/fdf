@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_errmsg.c                                        :+:      :+:    :+:   */
+/*   ft_err_exit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astrelov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: astrelov <astrelov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/06 15:34:36 by astrelov          #+#    #+#             */
-/*   Updated: 2017/11/06 15:34:37 by astrelov         ###   ########.fr       */
+/*   Created: 2018/08/08 13:38:45 by astrelov          #+#    #+#             */
+/*   Updated: 2018/08/08 14:29:39 by astrelov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_errmsg(char *err)
+int		ft_err_exit(char *err_msg)
 {
-	ft_putstr_fd(err, 2);
+	if (err_msg)
+	{
+		ft_printf(COLOR_BRED);
+		ft_putendl_fd(err_msg, 2);
+		ft_printf(COLOR_RESET);
+	}
+	exit(1);
 }

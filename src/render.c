@@ -21,27 +21,27 @@ void	fill_image_pixel(t_img *img, int x, int y, int color)
 
 void	make_image(t_fdf *fdf)
 {
-	fdf->img.width = fdf->win_width;
-	fdf->img.height = fdf->win_height;
-	if (!(fdf->img.img_ptr = mlx_new_image(fdf->mlx_ptr, fdf->img.width, fdf->img.height)))
-		error("couldn't create image");
-	fdf->img.img_buff = mlx_get_data_addr(fdf->img.img_ptr, &fdf->img.bpp, &fdf->img.size_line, &fdf->img.endian);
-	fdf->img.bpp /= 8;
+	fdf->img_struct.width = fdf->win_width;
+	fdf->img_struct.height = fdf->win_height;
+	if (!(fdf->img_struct.img_ptr = mlx_new_image(fdf->mlx_ptr, fdf->img_struct.width, fdf->img_struct.height)))
+		ft_err_exit("ERROR: couldn't create image");
+	fdf->img_struct.img_buff = mlx_get_data_addr(fdf->img_struct.img_ptr, &fdf->img_struct.bpp, &fdf->img_struct.size_line, &fdf->img_struct.endian);
+	fdf->img_struct.bpp /= 8;
 }
 
 void	delete_image(t_fdf *fdf)
 {
-	mlx_destroy_image(fdf->mlx_ptr, fdf->img.img_ptr);
-	ft_bzero(&fdf->img, sizeof(fdf->img));
+	mlx_destroy_image(fdf->mlx_ptr, fdf->img_struct.img_ptr);
+	ft_bzero(&fdf->img_struct, sizeof(fdf->img_struct));
 }
 
 void	fill_image(t_fdf *fdf)
 {
 	static int	color = 0xa0a0a0;
 
-	for (int y = 0; y < fdf->img.height; y++)
-		for (int x = 0; x < fdf->img.width; x++)
-			fill_image_pixel(&fdf->img, x, y, color);
+	for (int y = 0; y < fdf->img_struct.height; y++)
+		for (int x = 0; x < fdf->img_struct.width; x++)
+			fill_image_pixel(&fdf->img_struct, x, y, color);
 	color++;
 }
 
@@ -49,11 +49,11 @@ int		render(t_fdf *fdf)
 {
 	mlx_clear_window(fdf->mlx_ptr, fdf->win_ptr);
 
-	if (fdf->img.img_ptr)
+	if (fdf->img_struct.img_ptr)
 		delete_image(fdf);
 	make_image(fdf);
 	fill_image(fdf);
-	mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img.img_ptr, 0, 0);
+	mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img_struct.img_ptr, 0, 0);
 
 	return (0);
 }
