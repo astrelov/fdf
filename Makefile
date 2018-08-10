@@ -61,13 +61,10 @@ all:				objdir
 					@make $(NAME)
 
 $(NAME):        	$(OBJS)
-ifeq ($(OSTYPE), linux-gnu)
-	@printf "\n$(BCyan)Linking with UNIX flags$(Color_Off)"
-	@gcc -o $(NAME) $(OBJS) $(LIBFTFLAG) $(MLXFLAG_LINUX)
-else
-	@printf "\n$(BCyan)Linking with MAC OS flags$(Color_Off)"
-	@gcc -o $(NAME) $(OBJS) $(LIBFTFLAG) $(MLXFLAG_MAC)
-endif
+					#@printf "\n$(BCyan)Linking with UNIX flags$(Color_Off)"
+					#@gcc -o $(NAME) $(OBJS) $(LIBFTFLAG) $(MLXFLAG_LINUX)
+					@printf "\n$(BCyan)Linking with MAC OS flags$(Color_Off)"
+					@gcc -o $(NAME) $(OBJS) $(LIBFTFLAG) $(MLXFLAG_MAC)
 					@printf "\n\033[0;32mfdf: DONE\033[0m\n"
 
 $(OBJDIR)%.o:		src/%.c $(HEADER)

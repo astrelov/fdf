@@ -88,9 +88,9 @@ int		handle_mouse_click(int button, int x, int y, t_fdf *fdf)
 	x_prev = x;
 	y_prev = y;
 //	ft_printf("Mouse click event. key: %d, x: %d, y: %d\n", button, x, y);
-//	fill_image_pixel(fdf->img.img_ptr, x, y, 0xffffff);
+//	fill_image_pixel(fdf->img_struct.img_ptr, x, y, 0xffffff);
 //	mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, x, y, 0xffffff);
 //	mlx_clear_window(fdf->mlx_ptr, fdf->win_ptr);
-//	mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img.img_ptr, 0, 0);
+//	mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img_struct.img_ptr, 0, 0);
 	return (0);
 }

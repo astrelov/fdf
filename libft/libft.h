@@ -6,7 +6,7 @@
 /*   By: astrelov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/30 14:18:27 by astrelov          #+#    #+#             */
-/*   Updated: 2018/07/20 16:29:31 by astrelov         ###   ########.fr       */
+/*   Updated: 2018/08/08 13:43:49 by astrelov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
+size_t				ft_lstlen(t_list *lst);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list				*ft_lstnew(void const *content, size_t content_size);
+t_list				*ft_lstrev(t_list **head);
 void				*ft_memalloc(size_t size);
 void				*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void				*ft_memchr(const void *s, int c, size_t n);
@@ -94,6 +96,7 @@ char				*ft_strnstr(const char *haystack, const char *needle,\
 char				*ft_strpbrk(const char *s, const char *charset);
 char				*ft_strrchr(const char *s, int c);
 char				**ft_strsplit(char const *s, char c);
+void				ft_strsplit_del(char ***split0);
 char				*ft_strstr(const char *haystack, const char *needle);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 void				ft_strtolow(char *str);
@@ -101,11 +104,11 @@ void				ft_strtoupp(char *str);
 char				*ft_strtrim(char const *s);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
-void				ft_errmsg(char	*err);
 double				ft_lf_pow(double num, short pow);
 double				ft_d_sqrt(double x);
 long long			ft_ll_fact(short num);
 int					*ft_d_bblsort(int *arr, size_t len);
 int					ft_gnl(const int fd, char **line);
+int					ft_err_exit(char *err_msg);
 
 #endif

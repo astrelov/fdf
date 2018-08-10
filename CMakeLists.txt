@@ -31,7 +31,7 @@ set(LIBFT
         libft/ft_d_bblsort.c
         libft/ft_d_minind.c
         libft/ft_d_sqrt.c
-        libft/ft_errmsg.c
+        libft/ft_err_exit.c
         libft/ft_gnl.c
         libft/ft_isalnum.c
         libft/ft_isalpha.c
@@ -45,8 +45,10 @@ set(LIBFT
         libft/ft_lstdel.c
         libft/ft_lstdelone.c
         libft/ft_lstiter.c
+        libft/ft_lstlen.c
         libft/ft_lstmap.c
         libft/ft_lstnew.c
+        libft/ft_lstrev.c
         libft/ft_memalloc.c
         libft/ft_memccpy.c
         libft/ft_memchr.c
@@ -88,6 +90,7 @@ set(LIBFT
         libft/ft_strpbrk.c
         libft/ft_strrchr.c
         libft/ft_strsplit.c
+        libft/ft_strsplit_del.c
         libft/ft_strstr.c
         libft/ft_strsub.c
         libft/ft_strtolow.c

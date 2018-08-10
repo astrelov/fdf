@@ -6,7 +6,7 @@
 /*   By: astrielov <astrielov@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 16:32:56 by astrielov         #+#    #+#             */
-/*   Updated: 2018/04/20 17:04:48 by astrelov         ###   ########.fr       */
+/*   Updated: 2018/08/08 14:11:31 by astrelov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,26 @@ int		ft_printf(const char *format, ...)
 	va_end(va);
 	result = (int)buff->index;
 	write(1, buff->buff, buff->index);
+	ft_memdel((void **)&(buff->buff));
+	ft_memdel((void **)&buff);
+	return (result);
+}
+
+int		ft_dprintf(int fd, const char *format, ...)
+{
+	va_list	va;
+	t_buff	*buff;
+	int		result;
+
+	if (fd < 1)
+		ft_err_exit("ft_dprintf: fd < 1");
+	buff = (t_buff *)ft_memalloc(sizeof(t_buff));
+	buff_realloc(buff);
+	va_start(va, format);
+	inner_pf((char *)format, va, buff);
+	va_end(va);
+	result = (int)buff->index;
+	write(fd, buff->buff, buff->index);
 	ft_memdel((void **)&(buff->buff));
 	ft_memdel((void **)&buff);
 	return (result);

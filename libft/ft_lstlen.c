@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_d_minind.c                                      :+:      :+:    :+:   */
+/*   ft_lstlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: astrelov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: astrelov <astrelov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/06 15:06:55 by astrelov          #+#    #+#             */
-/*   Updated: 2018/08/08 13:49:00 by astrelov         ###   ########.fr       */
+/*   Created: 2018/08/08 13:22:34 by astrelov          #+#    #+#             */
+/*   Updated: 2018/08/08 13:22:34 by astrelov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_d_minind(int *arr, size_t len)
+size_t	ft_lstlen(t_list *lst)
 {
-	int		minind;
+	size_t	len;
 
-	minind = 0;
-	if (!arr)
+	len = 0;
+	while (lst)
 	{
-		ft_err_exit("ft_d_minind: incorrect input to function.\n");
-		return (-1);
+		len++;
+		lst = lst->next;
 	}
-	while (len--)
-		if (arr[len] <= arr[minind])
-			minind = (int)len;
-	return (minind);
+	return (len);
 }

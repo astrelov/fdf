@@ -6,7 +6,7 @@
 /*   By: astrelov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 12:58:01 by astrelov          #+#    #+#             */
-/*   Updated: 2017/11/06 12:58:02 by astrelov         ###   ########.fr       */
+/*   Updated: 2018/08/08 13:48:41 by astrelov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		*ft_d_bblsort(int *arr, size_t len)
 
 	if (!arr)
 	{
-		ft_errmsg("ft_d_bblsort: incorrect input to function.\n");
+		ft_err_exit("ft_d_bblsort: incorrect input to function.\n");
 		return (0);
 	}
 	i = -1;
