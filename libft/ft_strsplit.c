@@ -6,82 +6,72 @@
 /*   By: astrelov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 17:11:44 by astrelov          #+#    #+#             */
-/*   Updated: 2017/11/01 17:11:45 by astrelov         ###   ########.fr       */
+/*   Updated: 2018/08/13 15:17:09 by null             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		memory(char const *s, char **res, char c)
+static int		count_words(const char *str, char delimiter)
 {
-	int			lett;
-	int			i;
-	int			ind;
-
-	ind = 0;
-	i = 0;
-	while (s[i])
-	{
-		while (s[i] == c)
-			i++;
-		if (s[i] != c && s[i])
-		{
-			lett = 0;
-			while (s[i] != c && s[i])
-			{
-				i++;
-				lett++;
-			}
-			if (!(res[ind] = (char *)malloc(sizeof(*res) * lett + 1)))
-				return (0);
-			ind++;
-		}
-	}
-	res[ind] = 0;
-	return (1);
-}
-
-static void		fill(char const *s, char **res, char c)
-{
-	int			i;
-	int			ind;
-	int			ind2;
-
-	i = 0;
-	ind = 0;
-	while (s[i])
-	{
-		while (s[i] == c)
-			i++;
-		if (s[i] != c && s[i])
-		{
-			ind2 = 0;
-			while (s[i] != c && s[i])
-				res[ind][ind2++] = s[i++];
-			res[ind][ind2] = '\0';
-			ind++;
-		}
-	}
-}
-
-char			**ft_strsplit(char const *s, char c)
-{
-	char		**res;
-	int			i;
 	int			words;
 
-	i = 0;
-	words = 0;
-	if (!s)
-		return (0);
-	(s[0] == c) ? 1 : (words = 1);
-	while (s[++i])
-		if (s[i] != c && s[i - 1] == c)
+	words = (*str == delimiter || !*str) ? 0 : 1;
+	while (*str)
+	{
+		if (*str == delimiter && (*(str + 1) != delimiter && *(str + 1)))
 			words++;
-	if (!(res = (char **)malloc(sizeof(res) * i + 1)))
-		return (0);
-	if (memory(s, res, c) == 0)
-		return (0);
-	fill(s, res, c);
-	return (res);
+		str++;
+	}
+	return (words);
+}
+
+static size_t	count_word_len(const char *str, char delimiter)
+{
+	size_t		word_len;
+	char		*next_delimiter_ptr;
+
+	next_delimiter_ptr = ft_strchr(str, delimiter);
+	if (next_delimiter_ptr)
+		word_len = next_delimiter_ptr - str;
+	else
+		word_len = ft_strlen(str);
+	return (word_len);
+}
+
+static char		**fill_split(char **split, const char *str, char delimiter)
+{
+	int			i;
+	int 		word_ind;
+	size_t		word_len;
+
+	word_ind = -1;
+	while (*str)
+	{
+		if (*str != delimiter && *str)
+		{
+			word_len = count_word_len(str, delimiter);
+			if (!(split[++word_ind] = (char *)ft_memalloc(word_len + 1)))
+				return (ft_strsplit_del(&split));
+			i = 0;
+			while (*str != delimiter && *str)
+				split[word_ind][i++] = *str++;
+		}
+		else
+			str++;
+	}
+	return (split);
+}
+
+char			**ft_strsplit(char const *str, char delimiter)
+{
+	char		**split;
+	int			words;
+
+	if (!str)
+		return (NULL);
+	words = count_words(str, delimiter);
+	if (!(split = (char **)ft_memalloc(sizeof(char *) * (words + 1))))
+		return (NULL);
+	return (fill_split(split, str, delimiter));
 }

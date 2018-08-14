@@ -12,3 +12,9 @@ fdf
 libft/obj/
 
 obj/
+
+file\.log
+
+libft/bin
+
+libft/main\.c

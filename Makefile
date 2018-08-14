@@ -6,7 +6,7 @@
 #    By: astrelov <astrelov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/01 16:22:59 by astrelov          #+#    #+#              #
-#    Updated: 2018/08/07 16:03:16 by astrelov         ###   ########.fr        #
+#    Updated: 2018/08/14 10:42:47 by null             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,9 @@ NAME =          	fdf
 SRC =           	src/main.c \
 					src/render.c \
 					src/parse_map.c \
-					src/handle_events.c
+					src/handle_events.c \
+					src/rotation.c \
+					src/sundry.c
 
 OBJS =         		$(patsubst src/%.c, $(OBJDIR)%.o, $(SRC))
 
@@ -57,14 +59,14 @@ MLXFLAG_MAC =		-lmlx -framework OpenGL -framework AppKit
 MLXFLAG_LINUX =		-lmlx -lXext -lX11
 
 all:				objdir
-					@make --directory=./libft
+					@make -C libft/
 					@make $(NAME)
 
 $(NAME):        	$(OBJS)
-					#@printf "\n$(BCyan)Linking with UNIX flags$(Color_Off)"
-					#@gcc -o $(NAME) $(OBJS) $(LIBFTFLAG) $(MLXFLAG_LINUX)
-					@printf "\n$(BCyan)Linking with MAC OS flags$(Color_Off)"
-					@gcc -o $(NAME) $(OBJS) $(LIBFTFLAG) $(MLXFLAG_MAC)
+					@printf "\n$(BCyan)Linking with UNIX flags$(Color_Off)"
+					@gcc -o $(NAME) $(OBJS) $(LIBFTFLAG) $(MLXFLAG_LINUX) -lm
+					#@printf "\n$(BCyan)Linking with MAC OS flags$(Color_Off)"
+					#@gcc -o $(NAME) $(OBJS) $(LIBFTFLAG) $(MLXFLAG_MAC) -lm
 					@printf "\n\033[0;32mfdf: DONE\033[0m\n"
 
 $(OBJDIR)%.o:		src/%.c $(HEADER)

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	ft_strsplit_del(char ***split0)
+void	*ft_strsplit_del(char ***split0)
 {
 	char	**split;
 	int		i;
@@ -23,4 +23,5 @@ void	ft_strsplit_del(char ***split0)
 	while (split[++i])
 		ft_strdel(&(split[i]));
 	free(split);
+	return (NULL);
 }

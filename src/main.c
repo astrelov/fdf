@@ -6,38 +6,53 @@
 /*   By: astrelov <astrelov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 17:53:25 by astrelov          #+#    #+#             */
-/*   Updated: 2018/08/08 13:42:06 by astrelov         ###   ########.fr       */
+/*   Updated: 2018/08/14 16:57:15 by null             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
+void	set_view(t_env *env)
+{
+	env->s_view.x_multiplier = (int)(WIN_WIDTH / 1.5 / env->s_map.columns);
+	env->s_view.yz_multiplier = env->s_view.x_multiplier / 2;
+	env->s_view.x_2d_shift = WIN_WIDTH / 2;
+	env->s_view.y_2d_shift = WIN_HEIGHT / 2;
+}
+
 void	handle_file(char *file)
 {
-	t_fdf	fdf;
+	t_env	env;
 
-	parse_map(file, &fdf);
-	if (!(fdf.mlx_ptr = mlx_init()))
+	ft_bzero(&env, sizeof(env));
+	parse_map(file, &env);
+	if (!(env.mlx_ptr = mlx_init()))
 		ft_err_exit("ERROR: mlx failed to initialize");
-	fdf.win_width = 500;
-	fdf.win_height = 500;
-	ft_bzero(&fdf.img_struct, sizeof(fdf.img_struct));
-	fdf.win_ptr = mlx_new_window(fdf.mlx_ptr, fdf.win_width, fdf.win_height, file);
+	env.win_width = WIN_WIDTH;
+	env.win_height = WIN_HEIGHT;
+	env.win_ptr = mlx_new_window(env.mlx_ptr, env.win_width, env.win_height, file);
 
-	render(&fdf);
+	set_view(&env);
+//	rotate_x_dots(&env, 0);
+//	rotate_y_dots(&env, 10);
+//	rotate_z_dots(&env, 10);
+	render(&env);
 
-	mlx_key_hook(fdf.win_ptr, handle_key_pressed, &fdf);
-	mlx_mouse_hook(fdf.win_ptr, handle_mouse_click, &fdf);
-	mlx_hook(fdf.win_ptr, 17, 0, close_event, NULL);
-	mlx_hook(fdf.win_ptr, 12, 0, handle_expose_event, &fdf);
-//	mlx_hook(fdf.win_ptr, 6, 0, handle_mouse_movement, &fdf);
-//	mlx_loop_hook(fdf.mlx_ptr, &render, &fdf);
-	system("leaks -q fdf");
-	mlx_loop(fdf.mlx_ptr);
+	mlx_key_hook(env.win_ptr, handle_key_pressed, &env);
+	mlx_mouse_hook(env.win_ptr, handle_mouse_click, &env);
+	mlx_hook(env.win_ptr, 17, 0, close_event, NULL);
+	mlx_hook(env.win_ptr, 12, 0, handle_expose_event, &env);
+//	mlx_hook(env.win_ptr, 6, 0, handle_mouse_movement, &env);
+//	mlx_loop_hook(env.mlx_ptr, &render, &env);
+	system("leaks -q env");
+	mlx_loop(env.mlx_ptr);
 }
 
 int		main(int ac, char **av)
 {
+	system("rm -f file.log && touch file.log");
+	fd_logfile = open("file.log", O_RDWR);
+
 	if (ac != 2)
 		ft_err_exit("ERROR: wrong number of arguments (must be 1)");
 	handle_file(av[1]);

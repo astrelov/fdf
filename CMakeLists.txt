@@ -3,6 +3,10 @@ project(fdf)
 
 set(CMAKE_CXX_STANDARD 11)
 
+include_directories(
+        /usr/local/include
+        )
+
 set(LIBFT
         libft/ft_printf/includes/ft_printf.h
         libft/ft_printf/src/handle/integer/decimal.c
@@ -99,12 +103,18 @@ set(LIBFT
         libft/ft_tolower.c
         libft/ft_toupper.c
         libft/libft.h
+        libft/main.c
         )
 
 set(FDF
-        src/main.c
         includes/fdf.h
-        src/render.c src/parse_map.c src/handle_events.c)
+        src/main.c
+        src/render.c
+        src/parse_map.c
+        src/handle_events.c
+        src/sundry.c
+        src/rotation.c
+        )
 
 add_executable(fdf
         ${LIBFT}
