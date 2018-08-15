@@ -6,17 +6,17 @@
 /*   By: null <null@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 21:57:40 by null              #+#    #+#             */
-/*   Updated: 2018/08/15 12:53:04 by null             ###   ########.fr       */
+/*   Updated: 2018/08/15 12:56:57 by null             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-t_dot_3d	*make_dots_arr(char **split, t_env *env, int line_ind)
+static t_dot_3d		*make_dots_arr(char **split, t_env *env, int line_ind)
 {
-	char		*nbr_str;
-	t_dot_3d	*dots;
-	int			column_ind;
+	char			*nbr_str;
+	t_dot_3d		*dots;
+	int				column_ind;
 
 	if (!env->s_map.columns)
 		if (!(env->s_map.columns = strsplit_len(split)))
@@ -38,10 +38,10 @@ t_dot_3d	*make_dots_arr(char **split, t_env *env, int line_ind)
 	return (dots);
 }
 
-void	make_3d_dots_2d_array(t_list *lst, t_env *env)
+static void			make_3d_dots_2d_array(t_list *lst, t_env *env)
 {
-	char	**split;
-	int		ind;
+	char			**split;
+	int				ind;
 
 	env->s_map.lines = (int)ft_lstlen(lst);
 	env->s_map.dots_initial = (t_dot_3d **)ft_memalloc(sizeof(t_dot_3d *) * env->s_map.lines);
@@ -58,12 +58,12 @@ void	make_3d_dots_2d_array(t_list *lst, t_env *env)
 	}
 }
 
-void	parse_map(char *file, t_env *env)
+void				parse_map(char *file, t_env *env)
 {
-	int		fd;
-	char	*line;
-	t_list	*lst;
-	t_list	*new;
+	int				fd;
+	char			*line;
+	t_list			*lst;
+	t_list			*new;
 
 	lst = NULL;
 	if ((fd = open(file, O_RDONLY)) < 0)

@@ -6,7 +6,7 @@
 /*   By: astrelov <astrelov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/08 13:38:45 by astrelov          #+#    #+#             */
-/*   Updated: 2018/08/08 14:29:39 by astrelov         ###   ########.fr       */
+/*   Updated: 2018/08/15 15:02:26 by null             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ int		ft_err_exit(char *err_msg)
 		ft_putendl_fd(err_msg, 2);
 		ft_printf(COLOR_RESET);
 	}
+	system("leaks -q fdf"); // DEBUG
 	exit(1);
 }
