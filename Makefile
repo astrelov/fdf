@@ -6,7 +6,7 @@
 #    By: astrelov <astrelov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/01 16:22:59 by astrelov          #+#    #+#              #
-#    Updated: 2018/08/14 10:42:47 by null             ###   ########.fr        #
+#    Updated: 2018/08/15 10:43:42 by null             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ SRC =           	src/main.c \
 					src/render.c \
 					src/parse_map.c \
 					src/handle_events.c \
-					src/rotation.c \
+					src/rotations.c \
+					src/view_change_actions.c \
 					src/sundry.c
 
 OBJS =         		$(patsubst src/%.c, $(OBJDIR)%.o, $(SRC))

@@ -6,7 +6,7 @@
 /*   By: null <null@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 21:57:40 by null              #+#    #+#             */
-/*   Updated: 2018/08/14 16:05:08 by null             ###   ########.fr       */
+/*   Updated: 2018/08/15 12:53:04 by null             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,27 @@
 t_dot_3d	*make_dots_arr(char **split, t_env *env, int line_ind)
 {
 	char		*nbr_str;
-	t_dot_3d	*arr;
+	t_dot_3d	*dots;
 	int			column_ind;
 
-	env->s_map.columns = split_len(split);
-	arr = (t_dot_3d *)ft_memalloc(sizeof(t_dot_3d) * env->s_map.columns);
+	if (!env->s_map.columns)
+		if (!(env->s_map.columns = strsplit_len(split)))
+			ft_err_exit("ERROR: empty line");
+	dots = (t_dot_3d *)ft_memalloc(sizeof(t_dot_3d) * env->s_map.columns);
 	column_ind = -1;
 	while (split[++column_ind])
 	{
-		arr[column_ind].x = column_ind - env->s_map.columns / 2.0;
-		arr[column_ind].y = line_ind - env->s_map.lines / 2.0;
-		arr[column_ind].z = ft_atoi(split[column_ind]);
-		nbr_str = ft_itoa((int)arr[column_ind].z);
+		dots[column_ind].x = column_ind - env->s_map.columns / 2.0;
+		dots[column_ind].y = line_ind - env->s_map.lines / 2.0;
+		dots[column_ind].z = ft_atoi(split[column_ind]);
+		nbr_str = ft_itoa((int)dots[column_ind].z);
 		if (!ft_strequ(nbr_str, split[column_ind]))
-			ft_err_exit("ERROR: dots must be integers");
+			ft_err_exit("ERROR: coordinates must be integers");
 		ft_strdel(&nbr_str);
 	}
-	return (arr);
+	if (column_ind != env->s_map.columns)
+		ft_err_exit("ERROR: wrong amount of coordinates at some line");
+	return (dots);
 }
 
 void	make_3d_dots_2d_array(t_list *lst, t_env *env)
@@ -40,13 +44,14 @@ void	make_3d_dots_2d_array(t_list *lst, t_env *env)
 	int		ind;
 
 	env->s_map.lines = (int)ft_lstlen(lst);
-	env->s_map.dots = (t_dot_3d **)ft_memalloc(sizeof(t_dot_3d *) * env->s_map.lines);
+	env->s_map.dots_initial = (t_dot_3d **)ft_memalloc(sizeof(t_dot_3d *) * env->s_map.lines);
+	env->s_map.dots_curr = (t_dot_3d **)ft_memalloc(sizeof(t_dot_3d *) * env->s_map.lines);
 	ind = 0;
 	while (lst)
 	{
-//		ft_putendl_fd(lst->content, fd_logfile);
 		split = ft_strsplit(lst->content, ' ');
-		env->s_map.dots[ind] = make_dots_arr(split, env, ind);
+		env->s_map.dots_initial[ind] = make_dots_arr(split, env, ind);
+		env->s_map.dots_curr[ind] = make_dots_arr(split, env, ind);
 		ft_strsplit_del(&split);
 		lst = lst->next;
 		ind++;

@@ -103,7 +103,6 @@ set(LIBFT
         libft/ft_tolower.c
         libft/ft_toupper.c
         libft/libft.h
-        libft/main.c
         )
 
 set(FDF
@@ -113,8 +112,8 @@ set(FDF
         src/parse_map.c
         src/handle_events.c
         src/sundry.c
-        src/rotation.c
-        )
+        src/rotations.c
+        src/view_change_actions.c)
 
 add_executable(fdf
         ${LIBFT}
