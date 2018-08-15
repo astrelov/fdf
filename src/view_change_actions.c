@@ -6,7 +6,7 @@
 /*   By: null <null@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 10:33:03 by null              #+#    #+#             */
-/*   Updated: 2018/08/15 13:13:04 by null             ###   ########.fr       */
+/*   Updated: 2018/08/15 14:02:00 by null             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,32 +24,19 @@ void	help_toggle_action(t_env *env)
 	render(env);
 }
 
-void	zoom_in_action(t_env *env)
+void	zoom_action(int button, t_env *env)
 {
-	env->s_view.zoom_multiplier *= ZOOM_MULTIPLIER;
-	render(env);
-}
-
-void	zoom_out_action(t_env *env)
-{
-	env->s_view.zoom_multiplier /= ZOOM_MULTIPLIER;
+	if (button == MOUSE_WHEEL_UP)
+		env->s_view.zoom_multiplier *= ZOOM_MULTIPLIER;
+	if (button == MOUSE_WHEEL_DOWN)
+		env->s_view.zoom_multiplier /= ZOOM_MULTIPLIER;
 	render(env);
 }
 
 void	change_land_height_action(int key, t_env *env)
 {
-	int 		line;
-	int 		column;
-
-	if (key)
-		env->s_map.z_multiplier *= (key == KEY_PLUS) ? 2 : 0.5;
-	line = -1;
-	while (++line < env->s_map.lines)
-	{
-		column = -1;
-		while (++column < env->s_map.columns)
-			env->s_map.dots_initial[line][column].z *= env->s_map.z_multiplier;
-	}
+	env->s_map.z_multiplier *= (key == KEY_PLUS) ? 2 : 0.5;
+	render(env);
 }
 
 void	move_map_action(int key, t_env *env)

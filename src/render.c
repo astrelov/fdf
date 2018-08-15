@@ -6,7 +6,7 @@
 /*   By: null <null@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 21:56:28 by null              #+#    #+#             */
-/*   Updated: 2018/08/15 13:14:20 by null             ###   ########.fr       */
+/*   Updated: 2018/08/15 13:21:02 by null             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,20 @@ static void 	copy_initial_to_curr_dots(t_map *s_map)
 	}
 }
 
+static void		change_land_height(t_map *s_map)
+{
+	int 		line;
+	int 		column;
+
+	line = -1;
+	while (++line < s_map->lines)
+	{
+		column = -1;
+		while (++column < s_map->columns)
+			s_map->dots_curr[line][column].z *= s_map->z_multiplier;
+	}
+}
+
 int				render(t_env *env)
 {
 	mlx_clear_window(env->mlx_ptr, env->win_ptr);
@@ -190,6 +204,7 @@ int				render(t_env *env)
 	fill_image_background(&env->s_img, FDF_COLOR_GRAY);
 
 	copy_initial_to_curr_dots(&env->s_map);
+	change_land_height(&env->s_map);
 	rotate_dots_3_axis(&env->s_map, &env->s_view);
 
 	draw_map_in_img(env);

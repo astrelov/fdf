@@ -6,7 +6,7 @@
 /*   By: astrelov <astrelov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 16:02:31 by astrelov          #+#    #+#             */
-/*   Updated: 2018/08/15 13:13:04 by null             ###   ########.fr       */
+/*   Updated: 2018/08/15 13:52:25 by null             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,7 @@ int							calculate_2d_line_x(int y, t_dot_3d *d0, t_dot_3d *d1);
 void						rotate_dots_3_axis(t_map *s_map, t_view *s_view);
 
 int							close_action();
-void						zoom_in_action(t_env *env);
-void						zoom_out_action(t_env *env);
+void						zoom_action(int button, t_env *env);
 void						change_land_height_action(int key, t_env *env);
 void 						rotate_axis_action(int key, t_env *env);
 void						move_map_action(int key, t_env *env);

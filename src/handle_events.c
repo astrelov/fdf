@@ -6,7 +6,7 @@
 /*   By: astrelov <astrelov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 16:07:32 by astrelov          #+#    #+#             */
-/*   Updated: 2018/08/15 13:13:04 by null             ###   ########.fr       */
+/*   Updated: 2018/08/15 14:09:40 by null             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ int 	handle_key_pressed(int key, t_env *env)
 	if (key == KEY_Q || key == KEY_W || key == KEY_E || key == KEY_1 || key == KEY_2 || key == KEY_3)
 		rotate_axis_action(key, env);
 	if (key == KEY_MINUS || key == KEY_PLUS)
-	{
 		change_land_height_action(key, env);
-		render(env);
-	}
 	if (key == KEY_TAB)
 		help_toggle_action(env);
 	if (key == KEY_BACKSPACE)
@@ -46,9 +43,7 @@ int		handle_mouse_click(int button, int x, int y, t_env *env)
 {
 	ft_dprintf(fd_logfile, "Mouse click event. key: %d, x: %d, y: %d\n", button, x, y); // DEBUG
 
-	if (button == MOUSE_WHEEL_UP)
-		zoom_in_action(env);
-	if (button == MOUSE_WHEEL_DOWN)
-		zoom_out_action(env);
+	if (button == MOUSE_WHEEL_UP || button == MOUSE_WHEEL_DOWN)
+		zoom_action(button, env);
 	return (0);
 }
