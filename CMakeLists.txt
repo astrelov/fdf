@@ -109,7 +109,7 @@ set(FDF
         includes/fdf.h
         src/main.c
         src/render.c
-        src/parse_map.c
+        src/parse_file.c
         src/handle_events.c
         src/sundry.c
         src/rotations.c

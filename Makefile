@@ -6,7 +6,7 @@
 #    By: astrelov <astrelov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/01 16:22:59 by astrelov          #+#    #+#              #
-#    Updated: 2018/08/15 20:11:11 by null             ###   ########.fr        #
+#    Updated: 2018/08/16 12:05:46 by astrelov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ NAME =          	fdf
 
 SRC =           	src/main.c \
 					src/render.c \
-					src/parse_map.c \
+					src/parse_file.c \
 					src/handle_events.c \
 					src/rotations.c \
 					src/rotations2.c \
@@ -68,11 +68,16 @@ all:				objdir
 					@make -C libft/
 					@make $(NAME)
 
-$(NAME):        	$(OBJS)
-					@printf "\n$(BCyan)Linking with UNIX flags$(Color_Off)"
+LINK_MAC:
+					@printf "\n$(BCyan)Linking with MAC OS flags$(Color_Off)"
+					@gcc -o $(NAME) $(OBJS) $(LIBFTFLAG) $(MLXFLAG_MAC) -lm
+
+LINK_LINUX:
+					@printf "\n$(BCyan)Linking with Linux flags$(Color_Off)"
 					@gcc -o $(NAME) $(OBJS) $(LIBFTFLAG) $(MLXFLAG_LINUX) -lm
-					#@printf "\n$(BCyan)Linking with MAC OS flags$(Color_Off)"
-					#@gcc -o $(NAME) $(OBJS) $(LIBFTFLAG) $(MLXFLAG_MAC) -lm
+
+$(NAME):        	$(OBJS) LINK_MAC
+
 					@printf "\n\033[0;32mfdf: DONE\033[0m\n"
 
 $(OBJDIR)%.o:		src/%.c $(HEADER)

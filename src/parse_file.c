@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_map.c                                        :+:      :+:    :+:   */
+/*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: null <null@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 21:57:40 by null              #+#    #+#             */
-/*   Updated: 2018/08/15 12:56:57 by null             ###   ########.fr       */
+/*   Updated: 2018/08/16 11:57:33 by astrelov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,13 @@ static void			make_3d_dots_2d_array(t_list *lst, t_env *env)
 	}
 }
 
-void				parse_map(char *file, t_env *env)
+void				parse_file(int fd, t_env *env)
 {
-	int				fd;
 	char			*line;
 	t_list			*lst;
 	t_list			*new;
 
 	lst = NULL;
-	if ((fd = open(file, O_RDONLY)) < 0)
-		ft_err_exit("ERROR: failed to open file");
 	while (ft_gnl(fd, &line) == 1)
 	{
 		if (!ft_strlen(line))
@@ -76,6 +73,8 @@ void				parse_map(char *file, t_env *env)
 		ft_lstadd(&lst, new);
 		ft_strdel(&line);
 	}
+	if (!ft_lstlen(lst))
+		ft_err_exit("ERROR: file read fail");
 	ft_strdel(&line);
 	close(fd);
 

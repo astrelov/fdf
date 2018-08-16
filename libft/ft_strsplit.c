@@ -6,7 +6,7 @@
 /*   By: astrelov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 17:11:44 by astrelov          #+#    #+#             */
-/*   Updated: 2018/08/13 15:17:09 by null             ###   ########.fr       */
+/*   Updated: 2018/08/16 10:56:41 by astrelov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static size_t	count_word_len(const char *str, char delimiter)
 static char		**fill_split(char **split, const char *str, char delimiter)
 {
 	int			i;
-	int 		word_ind;
+	int			word_ind;
 	size_t		word_len;
 
 	word_ind = -1;
