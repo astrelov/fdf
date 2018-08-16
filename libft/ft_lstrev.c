@@ -31,7 +31,7 @@ static void	rev(t_list **head, t_list *prev, t_list *curr)
 	}
 }
 
-t_list	*ft_lstrev(t_list **head)
+t_list		*ft_lstrev(t_list **head)
 {
 	rev(head, NULL, NULL);
 	return (*head);

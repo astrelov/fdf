@@ -6,7 +6,7 @@
 /*   By: null <null@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 15:29:46 by null              #+#    #+#             */
-/*   Updated: 2018/08/16 12:21:15 by astrelov         ###   ########.fr       */
+/*   Updated: 2018/08/16 12:21:46 by astrelov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void		print_coordinates_angles(void *mlx_ptr, void *win_ptr, t_map *s_map
 	dots = s_map->dots_curr;
 	dot_3d_to_2d(&dot, &dots[s_map->lines / 2][s_map->columns / 2], s_view);
 	str = ft_itoa((int)dot.x);
-//	mlx_string_put(mlx_ptr, win_ptr, 125, 20, s_view->info_color, str);
 	mlx_string_put(mlx_ptr, win_ptr, INFO_CHAR_WIDTH_PX(12), 20, s_view->info_color, str);
 	ft_strdel(&str);
 	str = ft_itoa((int)dot.y);
