@@ -6,13 +6,13 @@
 /*   By: null <null@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 10:57:08 by null              #+#    #+#             */
-/*   Updated: 2018/08/16 15:50:39 by astrelov         ###   ########.fr       */
+/*   Updated: 2018/08/16 15:55:56 by astrelov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void		rotate_xyz_dots(t_rotate *r, t_dot_3d **dots)
+static void		rotate_xyz_dots(t_rotate *r, t_dot_3d **dots)
 {
 	while (++r->line < r->lines)
 	{
@@ -51,7 +51,7 @@ static void		fill_rotate_struct(t_rotate *r, t_map *s_map, t_view *s_view)
 	r->line = -1;
 }
 
-void		rotate_dots_3_axis(t_map *s_map, t_view *s_view)
+void			rotate_dots_3_axis(t_map *s_map, t_view *s_view)
 {
 	t_rotate	r;
 

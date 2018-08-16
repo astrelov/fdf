@@ -6,7 +6,7 @@
 /*   By: astrelov <astrelov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 16:02:31 by astrelov          #+#    #+#             */
-/*   Updated: 2018/08/16 14:12:02 by astrelov         ###   ########.fr       */
+/*   Updated: 2018/08/16 14:17:53 by astrelov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,11 +180,6 @@ int									calculate_2d_line_y(int x, t_dot_3d *d0, t_dot_3d *d1);
 int									calculate_2d_line_x(int y, t_dot_3d *d0, t_dot_3d *d1);
 void								rotate_dots_3_axis(t_map *s_map, t_view *s_view);
 void								calculate_3d_map(t_map *s_map, t_view *s_view);
-
-void 								rotate_xy_dots(t_rotate *r, t_dot_3d **dots);
-void 								rotate_xz_dots(t_rotate *r, t_dot_3d **dots);
-void 								rotate_yz_dots(t_rotate *r, t_dot_3d **dots);
-void								rotate_xyz_dots(t_rotate *r, t_dot_3d **dots);
 
 /*
 ** EVENTS
