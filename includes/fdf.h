@@ -6,7 +6,7 @@
 /*   By: astrelov <astrelov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 16:02:31 by astrelov          #+#    #+#             */
-/*   Updated: 2018/08/16 12:23:57 by astrelov         ###   ########.fr       */
+/*   Updated: 2018/08/16 14:12:02 by astrelov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include "../libft/libft.h"
 # include <mlx.h>
 # include <math.h>
-
-#include <stdio.h>
 
 # define INFO_CHAR_WIDTH_PX(x)		((int)(10.2 * (x)))
 # define INFO_CHAR_HEIGHT_PX(x)		(20 * (x))
@@ -83,8 +81,9 @@
 
 # define FDF_COLOR_GRAY				0xa0a0a0
 
-int 								fd_logfile; // DEBUG
-
+/*
+** used in 3d dots rotations around axis
+*/
 typedef struct						s_rotate
 {
 	double							x_angle;
@@ -99,6 +98,9 @@ typedef struct						s_rotate
 	int 							columns;
 }									t_rotate;
 
+/*
+** keep image parameters
+*/
 typedef struct						s_image
 {
 	void							*img_ptr;
@@ -110,6 +112,9 @@ typedef struct						s_image
 	int 							endian;
 }									t_image;
 
+/*
+** simple 3d dot
+*/
 typedef struct						s_dot_3d
 {
 	double 							x;
@@ -117,6 +122,9 @@ typedef struct						s_dot_3d
 	double 							z;
 }									t_dot_3d;
 
+/*
+** map information storage
+*/
 typedef struct						s_map
 {
 	t_dot_3d						**dots_initial;
@@ -124,8 +132,12 @@ typedef struct						s_map
 	int 							lines;
 	int								columns;
 	double 							z_multiplier;
+	int								max_z;
 }									t_map;
 
+/*
+** viewer perspective info
+*/
 typedef struct						s_view
 {
 	int								x_2d_shift;
@@ -139,6 +151,9 @@ typedef struct						s_view
 	int 							show_help;
 }									t_view;
 
+/*
+** contains all the pointers/structures used in project to pass them to mlx
+*/
 typedef struct						s_env
 {
 	void							*mlx_ptr;

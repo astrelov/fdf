@@ -6,7 +6,7 @@
 /*   By: null <null@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 21:57:40 by null              #+#    #+#             */
-/*   Updated: 2018/08/16 11:57:33 by astrelov         ###   ########.fr       */
+/*   Updated: 2018/08/16 14:13:57 by astrelov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static t_dot_3d		*make_dots_arr(char **split, t_env *env, int line_ind)
 		dots[column_ind].x = column_ind - env->s_map.columns / 2.0;
 		dots[column_ind].y = line_ind - env->s_map.lines / 2.0;
 		dots[column_ind].z = ft_atoi(split[column_ind]);
+		if (fabs(dots[column_ind].z) > env->s_map.max_z)
+			env->s_map.max_z = (int)fabs(dots[column_ind].z);
 		nbr_str = ft_itoa((int)dots[column_ind].z);
 		if (!ft_strequ(nbr_str, split[column_ind]))
 			ft_err_exit("ERROR: coordinates must be integers");
@@ -74,7 +76,7 @@ void				parse_file(int fd, t_env *env)
 		ft_strdel(&line);
 	}
 	if (!ft_lstlen(lst))
-		ft_err_exit("ERROR: file read fail");
+		ft_err_exit("ERROR: failed to read file / empty file");
 	ft_strdel(&line);
 	close(fd);
 

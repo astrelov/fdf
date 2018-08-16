@@ -6,7 +6,7 @@
 /*   By: astrelov <astrelov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 16:07:32 by astrelov          #+#    #+#             */
-/*   Updated: 2018/08/16 11:10:05 by astrelov         ###   ########.fr       */
+/*   Updated: 2018/08/16 13:24:05 by astrelov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,11 @@
 
 int		close_action()
 {
-	ft_dprintf(fd_logfile, "Close event.\n"); // DEBUG
-	system("leaks -q fdf"); // DEBUG
-
 	exit(0);
 }
 
 int 	handle_key_pressed(int key, t_env *env)
 {
-	ft_dprintf(fd_logfile, "Keyboard key press event. key: %d\n", key); // DEBUG
-
 	if (key == KEY_ESC_MAC)
 		close_action();
 	if (key == KEY_LEFT_ARROW_MAC || key == KEY_RIGHT_ARROW_MAC || key == KEY_UP_ARROW_MAC || key == KEY_DOWN_ARROW_MAC)
@@ -41,8 +36,8 @@ int 	handle_key_pressed(int key, t_env *env)
 
 int		handle_mouse_click(int button, int x, int y, t_env *env)
 {
-	ft_dprintf(fd_logfile, "Mouse click event. key: %d, x: %d, y: %d\n", button, x, y); // DEBUG
-
+	x += 0;
+	y += 0;
 	if (button == MOUSE_WHEEL_UP_MAC || button == MOUSE_WHEEL_DOWN_MAC)
 		zoom_action(button, env);
 	return (0);

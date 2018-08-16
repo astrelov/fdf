@@ -6,7 +6,7 @@
 /*   By: astrelov <astrelov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 17:53:25 by astrelov          #+#    #+#             */
-/*   Updated: 2018/08/16 12:24:24 by astrelov         ###   ########.fr       */
+/*   Updated: 2018/08/16 13:21:27 by astrelov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	handle_file(char *file)
 		ft_err_exit("ERROR: given path is a directory");
 	ft_bzero(&env, sizeof(env));
 	if ((fd = open(file, O_RDONLY)) < 0)
-		ft_err_exit("ERROR: failed to open file");
+		ft_err_exit("ERROR: failed to open file for read");
 	parse_file(fd, &env);
 	if (!(env.mlx_ptr = mlx_init()))
 		ft_err_exit("ERROR: mlx failed to initialize");
@@ -38,9 +38,6 @@ static void	handle_file(char *file)
 
 int			main(int ac, char **av)
 {
-	system("rm -f file.log && touch file.log"); // DEBUG
-	fd_logfile = open("file.log", O_RDWR); // DEBUG
-
 	if (ac == 1)
 		print_usage();
 	else

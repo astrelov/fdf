@@ -6,7 +6,7 @@
 #    By: astrelov <astrelov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/01 16:22:59 by astrelov          #+#    #+#              #
-#    Updated: 2018/08/16 12:05:46 by astrelov         ###   ########.fr        #
+#    Updated: 2018/08/16 12:29:40 by astrelov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,8 +76,8 @@ LINK_LINUX:
 					@printf "\n$(BCyan)Linking with Linux flags$(Color_Off)"
 					@gcc -o $(NAME) $(OBJS) $(LIBFTFLAG) $(MLXFLAG_LINUX) -lm
 
-$(NAME):        	$(OBJS) LINK_MAC
-
+$(NAME):        	$(OBJS)
+					@make LINK_MAC
 					@printf "\n\033[0;32mfdf: DONE\033[0m\n"
 
 $(OBJDIR)%.o:		src/%.c $(HEADER)
