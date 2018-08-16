@@ -113,7 +113,7 @@ set(FDF
         src/handle_events.c
         src/sundry.c
         src/rotations.c
-        src/view_change_actions.c src/calculate_3d_map.c src/image.c src/calculate_2d.c src/print_info.c src/rotations2.c)
+        src/view_change_actions.c src/calculate_3d_map.c src/image.c src/calculate_2d.c src/print_info.c)
 
 add_executable(fdf
         ${LIBFT}

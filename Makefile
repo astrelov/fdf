@@ -40,7 +40,6 @@ SRC =           	src/main.c \
 					src/parse_file.c \
 					src/handle_events.c \
 					src/rotations.c \
-					src/rotations2.c \
 					src/calculate_2d.c \
 					src/calculate_3d_map.c \
 					src/view_change_actions.c \
